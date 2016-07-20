@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{%block titulo%}
+  Poke-BLog
+{%endblock titulo%}
+{%block content%}
+    {% for entrada in entradas %}
+    <h2>{{entrada.titulo}}</h2>
+    <p style="text-align: justify; padding: 3%;">
+      {{entrada.cuerpo}}
+    </p>
+    <h4>{{entrada.fecha}}</h4>
+    {% empty %}
+    <h2>No hay Post</h2>
+    {% endfor %}
+{%endblock content%}
