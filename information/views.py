@@ -10,7 +10,7 @@ class Descripcion(View):
         ultron = PachuMarvel()
         ultron.get_personaje('ultron')
         context = {
-            'name': ultron.nombre,
+            'name': ultron.nombre.capitalize(),
             'descripcion': ultron.descripcion,
             'img': ultron.img,
         }

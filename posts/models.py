@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+
 class Post(models.Model):
     STATUS_CHOICE = (
         ('draft','Draft'),
@@ -18,3 +20,6 @@ class Post(models.Model):
 
     def __str__(self):
         return self.titulo
+
+    def get_absolute_url(self):
+        return reverse('posts:detalle', args=[self.slug])

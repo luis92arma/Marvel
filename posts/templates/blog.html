@@ -3,13 +3,14 @@
   Poke-BLog
 {%endblock titulo%}
 {%block content%}
-    {% for entrada in entradas %}
-    <h2>{{entrada.titulo}}</h2>
+  {% for entrada in entradas %}
+  <!-- <a href="{%url 'posts:detalle' entrada.id %}"><h2>{{entrada.titulo}}</h2></a>-->
+    <a href="{{entrada.get_absolute_url}}"><h2>{{entrada.titulo}}</h2></a>
     <p style="text-align: justify; padding: 3%;">
       {{entrada.cuerpo}}
     </p>
     <h4>{{entrada.fecha}}</h4>
     {% empty %}
     <h2>No hay Post</h2>
-    {% endfor %}
+  {% endfor %}
 {%endblock content%}
