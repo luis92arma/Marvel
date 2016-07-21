@@ -1,32 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>heroes</title>
-    <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  </head>
-    <div class="row">
-        <div class="col s12 m7">
-          <div class="card">
-            <div class="card-image">
-              <img src="{{img}}" style="width: 30%; heigth: 30%;">
-              <span class="card-title">{{name}}</span>
-            </div>
-            <div class="card-content" style="text-align: justify; width: 30%; heigth: 30%;">
-              <p>{{descripcion}}</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-      </div>
-  <!--Import jQuery before materialize.js-->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-  </body>
-</html>
+{% extends "base.html" %}
+{% block titulo %}
+{% endblock titulo %}
+{% block content %}
+<h1>{{name}}</h1>
+<img src="{{img}}" style="width: 30%; heigth: 30%;">
+<p>{{descripcion}}</p>
+{% endblock content %}
