@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from information import views
+#from information import views
 from posts import urls as postsUrl
 from information import urls as mainUrls
 urlpatterns = [

@@ -14,9 +14,9 @@ class ListView(View):
         return render(request, template_name, context)
 
 class DetailView(View):
-    def get(self,request,slug):
+    def get(self,request,slug,id):
         template_name = 'detalle.html'
-        post = Post.objects.get(slug=slug)
+        post = Post.objects.get(id=id,slug=slug)
         context = {
             'post': post
         }

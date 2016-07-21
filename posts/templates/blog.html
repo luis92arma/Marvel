@@ -1,10 +1,10 @@
-{%extends 'base.html'%}
+{%extends 'basePosts.html'%}
 {%block titulo%}
   Poke-BLog
 {%endblock titulo%}
 {%block content%}
   {% for entrada in entradas %}
-  <!-- <a href="{%url 'posts:detalle' entrada.id %}"><h2>{{entrada.titulo}}</h2></a>-->
+  <!-- <a href="{#{url 'posts:detalle' entrada.id }#}"><h2>entrada.titulo</h2></a>-->
     <a href="{{entrada.get_absolute_url}}"><h2>{{entrada.titulo}}</h2></a>
     <p style="text-align: justify; padding: 3%;">
       {{entrada.cuerpo}}
@@ -13,4 +13,5 @@
     {% empty %}
     <h2>No hay Post</h2>
   {% endfor %}
+  <a href="{%url 'posts:new'%}"class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 {%endblock content%}
