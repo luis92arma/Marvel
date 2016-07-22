@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from .models import Post
 from django.contrib.auth.models import User
+from .forms import PostForm
 
 class ListView(View):
     def get(self, request):
@@ -25,19 +26,38 @@ class DetailView(View):
 class NuevoPost(View):
     def get(self, request):
         template_name = 'nuevo.html'
-        context = {}
+        form = PostForm()
+        context = {
+            'form': form,
+        }
         return render(request, template_name, context)
 
     def post(self,request):
+        template_name = 'nuevo.html'
+        context = {
+            'guardado':True,
+        }
+        form = PostForm(request.POST)
+        form.save()
+        return render(request,template_name, context)
+
+
+
+
+
+        '''
         titulo = request.POST.get('titulo')
         cuerpo = request.POST.get('cuerpo')
         post = Post() #instanciar
         post.titulo = titulo
         post.cuerpo = cuerpo
-        post.autor = request.user
+        try:
+            post.autor = request.user
+        except:
+            pass
         post.save()
         template_name = 'nuevo.html'
         context = {
             'guardado': True
         }
-        return render(request, template_name, context)
+        return render(request, template_name, context)'''

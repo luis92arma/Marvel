@@ -5,8 +5,7 @@
     {% else %}
       <form class="" action="." method="post">
         {% csrf_token %}
-        <input type="text" name="titulo" placeholder="Escribe el titulo del post">
-        <textarea name="cuerpo" rows="8" cols="40" placeholder="Escribe tu posts"></textarea>
+        {{form.as_p}}
         <input type="submit" name="name" value="Publicar">
       </form>
       <a href="{%url 'posts:blog'%}">Cancelar</a>
