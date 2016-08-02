@@ -1,4 +1,7 @@
 {%extends 'basePosts.html'%}
+{% block titulo %}
+{{post.titulo}}
+{% endblock titulo %}
 {%block content%}
   <h1>{{post.titulo}}</h1>
   <p>
@@ -6,4 +9,24 @@
   </p>
   <strong>{{post.creado}}</strong>
   <a href="{%url 'posts:blog' %}">Regresar</a>
+  <form action="." method="post">
+		{%csrf_token%}
+		{{form.as_p}}
+		<input type="submit" value="Comentar">
+	</form>
+{% for comment in comments %}
+  <ul class="collection">
+    <li class="collection-item avatar">
+      <img src="images/yuna.jpg" alt="" class="circle">
+      <span class="title">{{comment.autor}}, {{comment.fecha}}</span>
+      <p style="text-align: justify;">
+        {{comment.cuerpo}}
+      </p>
+      <a href="" class="secondary-content"><i class="material-icons">grade</i></a>
+    </li>
+  </ul>
+  {% empty %}
+    <h4>Se el primero en dejar un Comentario </h4>
+{% endfor %}
+
 {%endblock content%}
