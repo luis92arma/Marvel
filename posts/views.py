@@ -13,7 +13,7 @@ class ListView(View):
         template_name = 'blog.html'
         user = User.objects.get(username='luis')
         posts = user.blog_post.all()
-        print(user,' ', posts)
+        #print(user,' ', posts)
         context = {
             'entradas': posts
         }
@@ -25,27 +25,30 @@ class DetailView(View):
         post = Post.objects.get(slug=slug)
         form = ComentarioForm()
         comment = post.comments.filter(activo = True)
-        print(comment)
+        #print(comment)
         context = {
             'post': post,
             'comments': comment,
             'form': form,
         }
+        #url = post.get_absolute_url
+        #redirect(url)
         return render(request, template_name, context)
 
     def post(self, request, slug):
         form = ComentarioForm(request.POST)
         if form.is_valid():
-            #post = Post.objects.get(slug=slug)
-            #newComment = form.save(commit=False)
-            #newComment.post = post.titulo
-            #newComment.save()
+            post = Post.objects.get(slug=slug)
+            #print(post)
+            newComment = form.save(commit=False)
+            newComment.post = post
+            newComment.save()
             form.save()
             messages.success(request, 'Hey! que buen comentario...')
-            return redirect('posts:new')
+            return redirect('posts:detalle', slug=slug)
         else:
             messages.error(request, 'Intentalo de nuevo')
-            return redirect('posts:detalle')
+            return redirect('posts:detalle', slug=slug)
 
 
 class NuevoPost(View):
